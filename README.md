@@ -1,10 +1,14 @@
 # free chatgpt
 
-无需账号即可免费无限次数使用的chatgpt api, 通过[Vercel AI Playground](https://play.vercel.ai/)实现。
+无需账号即可免费无限次数使用的chatgpt api.
 - 优点: 免费, 无需账号, 支持多个模型。
 - 缺点: 不是很快, 不太稳定。
 
-# demo
+## 原理
+Vercel提供了无需登录免费使用的[AI Playground], 限制了使用次数。
+其验证的是浏览器的user-agent, 所以只要一直更换请求头则可以一直免费使用。
+
+## 例子
 
 - url: `https://api.classmatelin.top/api`
 - curl体验: 
@@ -48,11 +52,7 @@ curl --silent --location --request POST 'http://127.0.0.1:8080/api' \
 }'
 ```
 
-
-
-
-
-### 参数说明
+## 参数说明
 
 |参数|必填|描述|
 |--|--|---|
@@ -63,7 +63,7 @@ curl --silent --location --request POST 'http://127.0.0.1:8080/api' \
 |presence_penalty|N|默认:0|
 |stop_sequences|N|默认:[]|
 
-### 支持模型
+## 支持模型
 
 - anthropic:claude-instant-v1
 - anthropic:claude-v1
@@ -83,3 +83,8 @@ curl --silent --location --request POST 'http://127.0.0.1:8080/api' \
 
 
 **默认使用openai:gpt-3.5-turbo**
+
+
+## 声明
+
+此项目仅用于测试和学习研究，请勿用于商业用途, 不能保证其合法性，准确性，完整性和有效性。

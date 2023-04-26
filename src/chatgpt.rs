@@ -32,6 +32,9 @@ fn is_complete(str: &str) -> bool {
     str.ends_with("```") || Regex::new(r"[。？！.!?]$").unwrap().is_match(str)
 }
 
+/// 核心功能实现
+/// 请求一次https://play.vercel.ai/api/oepnai.jpg获取custom-enconding, 再请求https://play.vercel.ai/api/generate.
+/// user-agent生成不够完善, 需要记录生成过的user-agent, 避免重复生成。
 impl Chatgpt {
     pub fn new() -> Result<Self> {
         let base_url = "https://play.vercel.ai/";
@@ -88,23 +91,23 @@ impl Chatgpt {
             return Err(anyhow!("API 可能已失效!"));
         }
         let str = response
-            .split('\n')
-            .map(|c| match c.len() > 2 {
+            .split('\n') // 使用换行符分割字符串
+            .map(|c| match c.len() > 2 { // 去除token左右两边双引号
                 true => &c[1..c.len() - 1],
                 false => "",
             })
-            .filter(|c| !c.is_empty())
+            .filter(|c| !c.is_empty()) // 去除空字符串
             .collect::<Vec<_>>()
-            .join("")
-            .replace("\\n", "\n")
-            .replace("\\\"", "\"");
+            .join("") // 拼接完整字符串
+            .replace("\\n", "\n")  
+            .replace("\\\"", "\""); 
         Ok(str)
     }
 
     pub async fn ask(self: Arc<Self>, chatgpt_params: ChatgptParams) -> Result<String> {
         let mut res = self.clone().request(&chatgpt_params).await?;
         for _ in 0..10 {
-            if res.contains("limit exceede") {
+            if res.contains("limit exceede") {// 超出限制, 说明user-agent达到使用上限
                 return Err(anyhow!("Rate limit exceeded!"));
             }
             if is_complete(&res) {
