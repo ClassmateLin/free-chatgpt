@@ -5,7 +5,7 @@
 - 缺点: 不是很快, 不太稳定。
 
 ## 原理
-Vercel提供了无需登录免费使用的[AI Playground], 限制了使用次数。
+Vercel提供了无需登录免费使用的[AI Playground](https://play.vercel.ai), 限制了使用次数。
 其验证的是浏览器的user-agent, 所以只要一直更换请求头则可以一直免费使用。
 
 ## 例子
