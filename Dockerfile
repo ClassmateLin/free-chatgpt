@@ -1,5 +1,5 @@
-# 编译容器
-FROM --platform=$TARGETPLATFORM rust:alpine3.17 as builder
+# 编译
+FROM --platform=$TARGETPLATFORM rust:1.68-alpine3.17 as builder
 
 WORKDIR /usr/src
 
@@ -18,11 +18,11 @@ RUN cargo build --release
 
 COPY src /usr/src/chatgpt/src/
 
-# 编译并使用upx压缩
+# 编译使用upx压缩
 RUN RUST_BACKTRACE=1 cargo build  --release && upx /usr/src/chatgpt/target/release/chatgpt
 
-# 运行容器
-FROM --platform=$TARGETPLATFORM alpine:3.17 AS runtime
+# 运行
+FROM --platform=$TARGETPLATFORM scratch as runtime
 
 WORKDIR /usr/local/chatgpt/
 

@@ -29,6 +29,8 @@ curl --silent --location --request POST 'https://api.classmatelin.top/api' \
 ![usage2](./images/usage2.png)
 ## 安装
 
+![images](./images/images.png)
+
 - `docker run -itd -p 8080:8080 --name=free-chatgpt classmatelin/free-chatgpt:latest`.
 
 - docker-compose, 见[lazy-docker](https://github.com/ClassmateLin/lazy-docker)
