@@ -1,0 +1,9 @@
+version: '3'
+services:
+  free-chatgpt:
+    image: free-chatgpt
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    restart: always
