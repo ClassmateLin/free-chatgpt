@@ -37,6 +37,7 @@ curl --silent --location --request POST 'https://api.classmatelin.top/api' \
 ### docker-compose方式
 
 - `git clone https://github.com/ClassmateLin/free-chatgpt`
+- `cd free-chatgpt`
 - `docker-compose up -d`
 
 
