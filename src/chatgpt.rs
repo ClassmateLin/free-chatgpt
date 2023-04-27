@@ -49,6 +49,14 @@ impl Chatgpt {
         Ok(Self { client, base_url })
     }
 
+    // 
+    //```
+    //let response=await fetch("/openai.jpeg");
+    // data=JSON.parse(atob(await response.text())); # base64解码后解析为json
+    // ret=eval("(".concat(data.c,")(data.a)")); # 用data.a作为参数调用函数data.c
+    // botPreventionToken=btoa(JSON.stringify({r:ret,t:data.t})) # json转字符串后进行base64编码
+    //```
+    // 
     pub async fn get_encoding(&self, user_agent: &str) -> Result<String> {
         let url = format!("{}openai.jpeg", self.base_url);
         let response = self
