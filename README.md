@@ -8,25 +8,6 @@
 Vercel提供了无需登录免费使用的[AI Playground](https://play.vercel.ai), 限制了使用次数。
 其验证的是浏览器的user-agent, 所以只要一直更换请求头则可以一直免费使用。
 
-## 例子
-
-- url: `https://api.classmatelin.top/api`
-- curl体验: 
-```
-curl --silent --location --request POST 'https://api.classmatelin.top/api' \
---header 'Content-Type: application/json' \
---data-raw '{
- 
-        "model": "openai:gpt-3.5-turbo",
-        "prompt": "您是一个Rust语言专家,我有问题需要问你。\n\n请问如何写一个hello world程序?"
-}'
-```
-
-
-- ![usage](./images/usage.png)
-
-- vercel单个api仅支持256个token,通过多次请求合并上下文支持超过1024个token。
-![usage2](./images/usage2.png)
 ## 安装
 
 ### docker run方式
